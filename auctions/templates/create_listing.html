@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center" style="padding-top: 20px">
+            <div class="col-md-8">
+                <h1><strong>Create New Listing</strong></h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div style="border-radius: 50px; padding: 20px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); ">
+            <div class="row justify-content-center" style="padding-top: 20px">
+                <div class="col-md-8">
+                    <form action="{% url 'create_listing' %}" method="post" enctype="multipart/form-data" class="listing-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select id="category" name="category" class="form-control">
+                                <option selected>Choose...</option>
+                                {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="bid" name="bid" placeholder="Bid" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <textarea id="description" name="description" placeholder="Description" class="form-control" style="height: 200%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="image" class="btn btn-dark">Select Image</label>
+                                <input type="file" id="image" name="image" accept="image/*" class="form-control-file" style="display: none;" onchange="document.getElementById('file-name-display').textContent = this.files[0].name">
+                                <span id="file-name-display" style="font-style: italic;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

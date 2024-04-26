@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row justify-content-end" style="padding-top: 20px">
+            <div class="col-md-8">
+                <h1><strong>Login</strong></h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="width: 50%">
+        <div class="border-container" style="border-radius: 50px; padding: 20px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); "> <!-- Добавляем класс border-container -->
+            <div class="row justify-content-center" style="padding-top: 20px">
+                <div class="col-md-8">
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="password" placeholder="Password">
+                        </div>
+                        <input class="btn btn-success" type="submit" value="Login">
+                    </form>
+                    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+<!-- categories.html -->
+{% extends "layout.html" %}
+{% block body %}
+<div class="container-fluid">
+  <div class="row">
+      {% for category in categories %}
+    <div class="col-md-3" style="padding-bottom: 20px">
+    <a href="{% url 'category_items' category.id %}" class="text-dark text-decoration-none">
+<div class="card" >
+  <div class="card-body">
+      <img class="card-img-top" src="{{ category.images.url }}" alt="Card image cap" style="height: 200px">
+      <p class="card-text">{{ category.name.capitalize }}</p>
+  </div>
+</div>
+    </a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    {% for notif in notifications %}
+        {% if notif.user == notif.winner  %}
+            <div class="alert alert-success" role="alert">
+                <strong>{{ notif.text }}</strong>
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                    <strong>{{ notif.text }}</strong>
+            </div>
+        {% endif %}
+    {% empty %}
+        <div class="col-12 alert alert-dark text-center" role="alert">
+        <strong>You are not following any listings</strong>
+        </div>
+    {% endfor %}
+
+
+  
+{% endblock %}

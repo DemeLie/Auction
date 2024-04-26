@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+    
+    <div class="container-fluid">
+  <div class="row">
+      {% for listing in listings %}
+    <div class="col-md-3" style="padding-bottom: 20px">
+    <a href="{% url 'listing_detail' listing.pk %}" class="text-dark text-decoration-none">
+      <div class="card">
+        <img class="card-img-top" src="{{ listing.images.url }}" alt="Card image cap" style="height: 200px">
+        <div class="card-body">
+          <h5 class="card-title">{{ listing.name }}</h5>
+          <p class="card-text">Bid: ${{ listing.current_bid }}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Created {{ listing.datetime }}</small>
+        </div>
+      </div>
+    </a>
+    </div>
+          {% empty %}
+          <div class="col-12 alert alert-dark text-center" role="alert">
+        <strong>Here is any listings</strong>
+    </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}
